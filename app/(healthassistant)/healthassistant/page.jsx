@@ -217,7 +217,7 @@ function HealthAssistantComponent() {
                   <>
                     <span>{activeTab}</span> 
                     <span className="ml-2">&gt;</span> {/* Adds caret */}
-                    <span className="ml-2">Healthcare Assistant's Dashboard</span>
+                    <span className="ml-2">Healthcare Assistants Dashboard</span>
                   </>
                 ) : (
                   activeTab

@@ -162,7 +162,7 @@ const preCheckTasks = [
   Rebound tenderness: Assess for peritonitis (e.g., appendicitis).`
         setAiSuggestions(prev => ({ ...prev, [key]: suggestions }))
       } else if (key === 'diagnosis') {
-        const suggestions = `Based on the patient's symptoms of fever, right lower quadrant abdominal pain, nausea, loss of appetite, and signs of dehydration, the most likely diagnosis is acute appendicitis. The elevated heart rate and fever suggest an ongoing infection or inflammation. The localized tenderness and guarding in the right lower quadrant further point toward appendicitis.
+        const suggestions = `Based on the patients symptoms of fever, right lower quadrant abdominal pain, nausea, loss of appetite, and signs of dehydration, the most likely diagnosis is acute appendicitis. The elevated heart rate and fever suggest an ongoing infection or inflammation. The localized tenderness and guarding in the right lower quadrant further point toward appendicitis.
   
   Additionally, signs of mild dehydration (dry mucous membranes, delayed skin turgor) may be secondary to decreased oral intake due to pain and nausea.
   
@@ -173,7 +173,7 @@ const preCheckTasks = [
   Right-sided kidney infection (pyelonephritis)
   Further investigations like an abdominal ultrasound or CT scan may be needed to confirm the diagnosis of appendicitis.
   
-  CAUTION: These are AI-generated suggestions based on the provided information. They should be carefully verified and considered by the healthcare professional in the context of the patient's full medical history, physical examination, and any additional diagnostic tests. The final diagnosis and treatment plan should always be determined by a qualified healthcare provider.`
+  CAUTION: These are AI-generated suggestions based on the provided information. They should be carefully verified and considered by the healthcare professional in the context of the patients full medical history, physical examination, and any additional diagnostic tests. The final diagnosis and treatment plan should always be determined by a qualified healthcare provider.`
         setAiSuggestions(prev => ({ ...prev, [key]: suggestions }))
       } else if (key === 'treatmentplan') {
         setShowWarningDialog(true)
@@ -247,9 +247,9 @@ const preCheckTasks = [
   
   Additionally, Alice has a documented allergy to penicillin, and therefore should not be administered any penicillin-based antibiotics, including amoxicillin or ampicillin. Please ensure any antibiotic alternatives are chosen with her allergy profile in mind.
   
-  It is also noted that Alice is currently taking warfarin, an anticoagulant. Given the potential risk of bleeding complications, especially during pregnancy, she should avoid non-steroidal anti-inflammatory drugs (NSAIDs) such as ibuprofen, as they can increase bleeding risk and interfere with warfarin's anticoagulant effects. Consider safer alternatives if pain relief is necessary.
+  It is also noted that Alice is currently taking warfarin, an anticoagulant. Given the potential risk of bleeding complications, especially during pregnancy, she should avoid non-steroidal anti-inflammatory drugs (NSAIDs) such as ibuprofen, as they can increase bleeding risk and interfere with warfarins anticoagulant effects. Consider safer alternatives if pain relief is necessary.
   
-  Please review the treatment plan in light of these considerations and adjust the medications accordingly to ensure Alice's safety.
+  Please review the treatment plan in light of these considerations and adjust the medications accordingly to ensure Alices safety.
   `
         setAiSuggestions(prev => ({ ...prev, treatmentplan: patientDetails }))
       }
@@ -578,11 +578,11 @@ const preCheckTasks = [
               </div>
               <div className="bg-[#fff3e6] border border-[#B24531] rounded-md p-3">
                 <p className="font-semibold">Allergy Alert:</p>
-                <p>Penicillin-based antibiotics (e.g., amoxicillin, ampicillin) are contraindicated due to the patient's documented penicillin allergy.</p>
+                <p>Penicillin-based antibiotics (e.g., amoxicillin, ampicillin) are contraindicated due to the patients documented penicillin allergy.</p>
               </div>
               <div className="bg-[#fff3e6] border border-[#B24531] rounded-md p-3">
                 <p className="font-semibold">Medication Interaction Alert:</p>
-                <p>Patient is currently taking warfarin. Avoid prescribing NSAIDs (e.g., ibuprofen) as they increase the risk of bleeding and may interfere with warfarin's effects.</p>
+                <p>Patient is currently taking warfarin. Avoid prescribing NSAIDs (e.g., ibuprofen) as they increase the risk of bleeding and may interfere with warfarins effects.</p>
               </div>
               <p className="font-medium">Please review the treatment plan and adjust medications to ensure patient safety.</p>
             </DialogDescription>
