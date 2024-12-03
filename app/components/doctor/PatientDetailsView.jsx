@@ -1488,7 +1488,7 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
 {activeTab === "summary" && (
  <div className="flex justify-between items-center">
   
-   <Card className="w-full mx-auto bg-[#75C05B]/10">
+   <Card className="w-full bg-[#75C05B]/10">
    
      <h2 className="text-2xl font-bold text-[#007664]"> </h2>
   <CardHeader className="flex flex-row items-center justify-between space-x-4">
@@ -1503,24 +1503,25 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
       </div>
       
       {/* Action Buttons Group */}
-      <div className="flex items-center gap-3">
-         <Button
-      variant="outline"
-      size="icon"
-      className="rounded-full w-10 h-10 border-teal-800 hover:bg-teal-800/10"
-      onClick={handleCallClick}
-    >
-      <Video className="h-4 w-4 text-teal-800" />
-    </Button>
-        
-        <Button 
-          className="bg-[#007664] text-white hover:bg-[#007664]/80 flex items-center gap-2"
-          onClick={openrefModal}
-        >
-          <Share2 className="h-4 w-4" />
-          <span>Refer Patient</span>
-        </Button>
-      </div>
+      <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+  <Button
+    variant="outline"
+    size="icon"
+    className="rounded-full w-10 h-10 border-teal-800 hover:bg-teal-800/10"
+    onClick={handleCallClick}
+  >
+    <Video className="h-4 w-4 text-teal-800" />
+  </Button>
+
+  <Button 
+    className="bg-[#007664] text-white hover:bg-[#007664]/80 flex items-center gap-2 w-full sm:w-auto"
+    onClick={openrefModal}
+  >
+    <Share2 className="h-4 w-4" />
+    <span>Refer Patient</span>
+  </Button>
+</div>
+
     </CardHeader>
   {/* Modal for selection */}
      <Modal isOpen={refmodalIsOpen} onRequestClose={closerefModal}>
@@ -1622,57 +1623,55 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
     <TabsContent value="summary" className="mt-32 sm:mt-6">
       <div className="space-y-6">
         {/* Top row with Demographics, Vitals, and Call Button */}
-        <div className="grid grid-cols-2 gap-4 relative">
-          <Card className="bg-[#75C05B]/10">
-            <CardHeader className="flex flex-row justify-between items-center">
-              <CardTitle className="text-lg text-[#007664]">Demographics</CardTitle>
-            
-            </CardHeader>
-            <CardContent>
-              <dl className="space-y-2">
-                <div>
-                  <dt className="font-medium">Gender</dt>
-                  <dd>{SelectedPatient.gender}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium">Phone</dt>
-                  <dd>{SelectedPatient.phone}</dd>
-                </div>
-                <div className="w-full overflow-hidden break-words">
-                <dt className="font-medium">Email</dt>
-                <dd className="text-sm text-gray-700">{SelectedPatient.email}</dd>
-              </div>
-                <div>
-                  <dt className="font-medium">Address</dt>
-                  <dd>{SelectedPatient.address}</dd>
-                </div>
-              </dl>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-[#75C05B]/10">
-            <CardHeader>
-              <CardTitle className="text-lg text-[#007664]">Latest Vitals</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <dl className="space-y-2">
-                <div>
-                  <dt className="font-medium">Blood Pressure</dt>
-                  <dd>{SelectedPatient.vitals?.bloodPressure || 'N/A'}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium">Heart Rate</dt>
-                  <dd>{SelectedPatient.vitals?.heartRate || 'N/A'} bpm</dd>
-                </div>
-                <div>
-                  <dt className="font-medium">Temperature</dt>
-                  <dd>{SelectedPatient.vitals?.temperature || 'N/A'} °C</dd>
-                </div>
-              </dl>
-            </CardContent>
-          </Card>
-          
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
+  <Card className="bg-[#75C05B]/10">
+    <CardHeader className=" text-center">
+      <CardTitle className="text-lg text-[#007664] text-center">Demographics</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <dl className="space-y-4 text-center">
+        <div>
+          <dt className="font-medium">Gender</dt>
+          <dd>{SelectedPatient.gender}</dd>
         </div>
+        <div>
+          <dt className="font-medium">Phone</dt>
+          <dd>{SelectedPatient.phone}</dd>
+        </div>
+        <div className="w-full overflow-hidden break-words">
+          <dt className="font-medium">Email</dt>
+          <dd className="text-sm text-gray-700">{SelectedPatient.email}</dd>
+        </div>
+        <div>
+          <dt className="font-medium">Address</dt>
+          <dd>{SelectedPatient.address}</dd>
+        </div>
+      </dl>
+    </CardContent>
+  </Card>
+
+  <Card className="bg-[#75C05B]/10">
+    <CardHeader>
+      <CardTitle className="text-lg text-[#007664] text-center">Latest Vitals</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <dl className="space-y-4 text-center">
+        <div>
+          <dt className="font-medium">Blood Pressure</dt>
+          <dd>{SelectedPatient.vitals?.bloodPressure || 'N/A'}</dd>
+        </div>
+        <div>
+          <dt className="font-medium">Heart Rate</dt>
+          <dd>{SelectedPatient.vitals?.heartRate || 'N/A'} bpm</dd>
+        </div>
+        <div>
+          <dt className="font-medium">Temperature</dt>
+          <dd>{SelectedPatient.vitals?.temperature || 'N/A'} °C</dd>
+        </div>
+      </dl>
+    </CardContent>
+  </Card>
+</div>
 
         {/* Visit History Section */}
         <div className="bg-[#F7F7F7] rounded-lg p-6 mx-auto">
@@ -1703,33 +1702,37 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
       <TabsContent value="consultations" className="mt-32 sm:mt-6">
         <div className="flex justify-between mb-4">
           <h3 className="text-lg font-semibold text-[#007664]">Recent Consultations</h3>
-          <div className="flex gap-x-4">
-           <Dialog open={isAddOpen} onOpenChange={(isOpen) => handleDialogChange(isOpen, 'add')}>
-        <DialogTrigger asChild>
-          <Button className="bg-[#007664] hover:bg-[#007664]/80">
-           <Plus className="h-4 w-4" />
-            New Consultation
-          </Button>
-        </DialogTrigger>
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-x-4">
+  <Dialog open={isAddOpen} onOpenChange={(isOpen) => handleDialogChange(isOpen, 'add')}>
+    <DialogTrigger asChild>
+      <Button className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto">
+        <Plus className="h-4 w-4" />
+        New Consultation
+      </Button>
+    </DialogTrigger>
 
-        <DialogContent className="max-w-full sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>New Consultation</DialogTitle>
-          </DialogHeader>
+    <DialogContent className="max-w-full sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle>New Consultation</DialogTitle>
+      </DialogHeader>
 
-          <ConsultationForm 
-            buttonText="Submit Consultation" 
-            onSubmit={() => handleFormSubmit('add')}
-           
-            isLoading={isLoading}
-          />
-        </DialogContent>
-      </Dialog>
-      <Button className="bg-[#007664] hover:bg-[#007664]/80" onClick={startSmartConsult}>
-      <Sparkles className="w-4 h-4" />
-      Start Smart Consultation
-    </Button>
-    </div>
+      <ConsultationForm 
+        buttonText="Submit Consultation" 
+        onSubmit={() => handleFormSubmit('add')}
+        isLoading={isLoading}
+      />
+    </DialogContent>
+  </Dialog>
+
+  <Button 
+    className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto" 
+    onClick={startSmartConsult}
+  >
+    <Sparkles className="w-4 h-4" />
+    Start Smart Consultation
+  </Button>
+</div>
+
         </div>
         <div className="border rounded-lg  overflow-x-auto">
           <table className="w-full table-auto border-collapse">
