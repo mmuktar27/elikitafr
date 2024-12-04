@@ -311,7 +311,7 @@ function DoctorsComponent() {
     onChange={(e) => setAdminInfo({ ...adminInfo, address: e.target.value })}
     disabled={!isEditing}
   />
-</div>
+
 
 <div className="flex flex-col sm:flex-row justify-between gap-4">
   <Button
@@ -334,7 +334,7 @@ function DoctorsComponent() {
     </Button>
   )}
 </div>
-
+</div>
               </DialogContent>
             </Dialog>
         
