@@ -4,7 +4,6 @@ import React from "react";
 
 const SettingsComponent = () => (
   <div className="space-y-4">
-    <h2 className="text-2xl font-bold">Settings</h2>
     <div className="rounded-lg bg-[#75C05B]/10 p-6 shadow">
       <h3 className="mb-4 text-xl font-semibold text-[#007664]">Personal</h3>
       <div className="space-y-4">
