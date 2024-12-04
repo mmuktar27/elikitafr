@@ -122,6 +122,7 @@ const NavItem = ({ icon: Icon, label, active, onClick }) => (
 
 function RemoteDoctorsComponent() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [isEditing, setIsEditing] = useState(false);
   const [adminInfo, setAdminInfo] = useState({
     name: "Smith",
     email: "smith@elikita.com",

@@ -118,7 +118,7 @@ const NavItem = ({ icon: Icon, label, active, onClick }) => (
 
 function HealthAssistantComponent() {
   const [activeTab, setActiveTab] = useState("dashboard");
-  const [isEditClicked, setIsEditClicked] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [adminInfo, setAdminInfo] = useState({
     name: "Smith",
     email: "smith@elikita.com",
