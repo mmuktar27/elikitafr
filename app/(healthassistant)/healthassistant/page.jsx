@@ -232,18 +232,22 @@ function HealthAssistantComponent() {
               </span>
             </div>
             <Dialog>
-              <DialogTrigger asChild>
+            <DialogTrigger asChild>
                 <div className="flex items-center space-x-2 cursor-pointer">
+                  {/* Avatar: Always Visible */}
                   <Avatar>
                     <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
                     <AvatarFallback>SM</AvatarFallback>
                   </Avatar>
-                  <div>
+
+                  {/* Admin Info: Hidden on Mobile */}
+                  <div className="hidden sm:block">
                     <p className="font-semibold">{adminInfo.name}</p>
                     <p className="text-sm text-gray-500">{adminInfo.email}</p>
                   </div>
                 </div>
               </DialogTrigger>
+
               <DialogContent
     className="bg-[#75C05B]/10 sm:max-w-[425px] w-full max-w-[95%] p-6 md:p-8 rounded-lg mx-auto mt-20 sm:mt-12"
   >
@@ -252,43 +256,52 @@ function HealthAssistantComponent() {
         Edit Profile
       </DialogTitle>
     </DialogHeader>
-                <div className="flex justify-center mb-4">
-                  <div className="relative">
-                    <Avatar className="h-24 w-24">
-                      <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
-                      <AvatarFallback>SM</AvatarFallback>
-                    </Avatar>
-                    <label htmlFor="avatar-upload" className="absolute bottom-0 right-0 bg-[#007664] rounded-full p-1 cursor-pointer">
-                      <Camera className="h-4 w-4 text-white" />
-                    </label>
-                    <input id="avatar-upload" type="file" className="hidden" />
-                  </div>
-                </div>
-                <div className="grid gap-4 py-4">
-                  <Input id="name" value={adminInfo.name} placeholder="Name" onChange={(e) => setAdminInfo({...adminInfo, name: e.target.value})} />
-                  <Input id="email" value={adminInfo.email} placeholder="Email" onChange={(e) => setAdminInfo({...adminInfo, email: e.target.value})} />
-                  <Input id="phone" value={adminInfo.phone} placeholder="Phone" onChange={(e) => setAdminInfo({...adminInfo, phone: e.target.value})} />
-                  <Input id="address" value={adminInfo.address} placeholder="Address" onChange={(e) => setAdminInfo({...adminInfo, address: e.target.value})} />
-                </div>
-                <div className="flex justify-between">
-                <Button
-                      variant="outline"
-                      className="bg-[#007664] text-white hover:bg-[#007664]/80"
-                      onClick={() => setIsEditClicked(true)} // Set to true when clicked
-                    >
-                      Edit
-                    </Button>
+    <div className="flex justify-center mb-4">
+  <div className="relative">
+    <Avatar className="h-24 w-24">
+      <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
+      <AvatarFallback>SM</AvatarFallback>
+    </Avatar>
+    <label 
+      htmlFor="avatar-upload" 
+      className="absolute bottom-1 right-1 bg-[#007664] rounded-full p-1 cursor-pointer shadow-md">
+      <Camera className="h-5 w-5 text-white" />
+    </label>
+    <input id="avatar-upload" type="file" className="hidden" />
+  </div>
+</div>
 
-                    {/* Apply Button (Only shows if Edit is clicked) */}
-                    {isEditClicked && (
-                      <Button
-                        className="bg-[#007664] hover:bg-[#007664]/80"
-                        onClick={() => setIsEditClicked(false)} // Optional: Reset when Apply is clicked
-                      >
-                        Apply
-                      </Button>
-                    )}
-                </div>
+<div className="grid gap-4 py-4">
+  <Input 
+    id="name" 
+    value={adminInfo.name} 
+    placeholder="Name" 
+    onChange={(e) => setAdminInfo({...adminInfo, name: e.target.value})} 
+  />
+  <Input 
+    id="email" 
+    value={adminInfo.email} 
+    placeholder="Email" 
+    onChange={(e) => setAdminInfo({...adminInfo, email: e.target.value})} 
+  />
+  <Input 
+    id="phone" 
+    value={adminInfo.phone} 
+    placeholder="Phone" 
+    onChange={(e) => setAdminInfo({...adminInfo, phone: e.target.value})} 
+  />
+  <Input 
+    id="address" 
+    value={adminInfo.address} 
+    placeholder="Address" 
+    onChange={(e) => setAdminInfo({...adminInfo, address: e.target.value})} 
+  />
+</div>
+
+<div className="flex flex-col sm:flex-row justify-between gap-4">
+  <Button variant="outline" className="bg-[#007664] text-white hover:bg-[#007664]/80 w-full sm:w-auto">Edit</Button>
+  <Button className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto">Apply</Button>
+</div>
               </DialogContent>
             </Dialog>
         
