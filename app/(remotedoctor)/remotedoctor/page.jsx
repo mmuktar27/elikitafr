@@ -252,86 +252,104 @@ function RemoteDoctorsComponent() {
                 </div>
               </DialogTrigger>
 
-              <DialogContent
-    className="bg-[#75C05B]/10 sm:max-w-[425px] w-full max-w-[95%] p-6 md:p-8 rounded-lg mx-auto mt-20 sm:mt-12"
-  >
-    <DialogHeader>
-      <DialogTitle className="text-[#007664] text-lg sm:text-xl md:text-2xl">
-        Edit Profile
-      </DialogTitle>
-    </DialogHeader>
-    <div className="flex justify-center mb-4">
-        <div className="relative">
-          <Avatar className="h-24 w-24">
-            <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
-            <AvatarFallback>SM</AvatarFallback>
-          </Avatar>
-          <label
-            htmlFor="avatar-upload"
-            className="absolute bottom-1 right-1 bg-[#007664] rounded-full p-1 cursor-pointer shadow-md"
-          >
-            <Camera className="h-5 w-5 text-white" />
-          </label>
-          <input id="avatar-upload" type="file" className="hidden" />
+              <DialogContent 
+        className="
+          fixed 
+          mo:bottom-0 
+        
+          mo:w-full 
+          mo:max-w-full 
+          rounded-t-xl 
+          mo:rounded-lg 
+        
+          mo:bottom-auto 
+          mo:left-1/2 
+          m0:top-1/2 
+          
+          bg-[#75C05B]/10 
+          p-6 
+          mo:p-8
+        "
+      >
+        <DialogHeader>
+          <DialogTitle className="text-[#007664] text-lg sm:text-xl md:text-2xl text-center">
+            Edit Profile
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="flex justify-center mb-4">
+          <div className="relative">
+            <Avatar className="h-24 w-24">
+              <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
+              <AvatarFallback>SM</AvatarFallback>
+            </Avatar>
+            <label
+              htmlFor="avatar-upload"
+              className="absolute bottom-1 right-1 bg-[#007664] rounded-full p-1 cursor-pointer shadow-md"
+            >
+              <Camera className="h-5 w-5 text-white" />
+            </label>
+            <input id="avatar-upload" type="file" className="hidden" />
+          </div>
         </div>
-      </div>
 
-      <div className="grid gap-4 py-4 max-h-80 overflow-y-auto">
-        <Input
-          id="name"
-          value={adminInfo.name}
-          placeholder="Name"
-          onChange={(e) => setAdminInfo({ ...adminInfo, name: e.target.value })}
-          disabled={!isEditing} // Disable inputs when not in edit mode
-        />
-        <Input
-          id="email"
-          value={adminInfo.email}
-          placeholder="Email"
-          onChange={(e) => setAdminInfo({ ...adminInfo, email: e.target.value })}
-          disabled={!isEditing} // Disable inputs when not in edit mode
-        />
-        <Input
-          id="phone"
-          value={adminInfo.phone}
-          placeholder="Phone"
-          onChange={(e) => setAdminInfo({ ...adminInfo, phone: e.target.value })}
-          disabled={!isEditing} // Disable inputs when not in edit mode
-        />
-        <Input
-          id="address"
-          value={adminInfo.address}
-          placeholder="Address"
-          onChange={(e) => setAdminInfo({ ...adminInfo, address: e.target.value })}
-          disabled={!isEditing} // Disable inputs when not in edit mode
-        />
-    
+        <div className="grid gap-4 py-4 max-h-[70vh] overflow-y-auto">
+          <Input
+            id="name"
+            value={adminInfo.name}
+            placeholder="Name"
+            onChange={(e) => setAdminInfo({ ...adminInfo, name: e.target.value })}
+            disabled={!isEditing}
+            className="w-full"
+          />
+          <Input
+            id="email"
+            value={adminInfo.email}
+            placeholder="Email"
+            onChange={(e) => setAdminInfo({ ...adminInfo, email: e.target.value })}
+            disabled={!isEditing}
+            className="w-full"
+          />
+          <Input
+            id="phone"
+            value={adminInfo.phone}
+            placeholder="Phone"
+            onChange={(e) => setAdminInfo({ ...adminInfo, phone: e.target.value })}
+            disabled={!isEditing}
+            className="w-full"
+          />
+          <Input
+            id="address"
+            value={adminInfo.address}
+            placeholder="Address"
+            onChange={(e) => setAdminInfo({ ...adminInfo, address: e.target.value })}
+            disabled={!isEditing}
+            className="w-full"
+          />
 
-      <div className="flex flex-col sm:flex-row justify-between gap-4">
-        <Button
-          variant="outline"
-          className="bg-[#007664] text-white hover:bg-[#007664]/80 w-full sm:w-auto"
-          onClick={() => setIsEditing(true)} // Show apply button when edit is clicked
-        >
-          Edit
-        </Button>
+          <div className="flex flex-col sm:flex-row justify-between gap-4 mt-4">
+            <Button
+              variant="outline"
+              className="bg-[#007664] text-white hover:bg-[#007664]/80 w-full sm:w-auto mb-2 sm:mb-0"
+              onClick={() => setIsEditing(true)}
+            >
+              Edit
+            </Button>
 
-        {isEditing && (
-          <Button
-            className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto"
-            onClick={() => {
-              // Handle applying changes, e.g., save data
-              setIsEditing(false); // Hide apply button after applying
-            }}
-          >
-            Apply
-          </Button>
-        )}
-      </div>
-      </div>
-
-
-              </DialogContent>
+            {isEditing && (
+              <Button
+                className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto"
+                onClick={() => {
+                  // Handle applying changes, e.g., save data
+                  setIsEditing(false);
+                }}
+              >
+                Apply
+              </Button>
+            )}
+          </div>
+        </div>
+      </DialogContent>
             </Dialog>
         
           </div>

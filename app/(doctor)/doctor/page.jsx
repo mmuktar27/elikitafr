@@ -274,7 +274,7 @@ function DoctorsComponent() {
           
           bg-[#75C05B]/10 
           p-6 
-          md:p-8
+          mo:p-8
         "
       >
         <DialogHeader>
