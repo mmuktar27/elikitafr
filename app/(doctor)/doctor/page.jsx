@@ -212,7 +212,7 @@ function DoctorsComponent() {
           <NavItem icon={LogOut} label="Logout" onClick={handleLogout} />
         </nav>
       </aside>
-      <main className="flex-1 overflow-auto bg-gray-100 p-8">
+      <main className="flex-1 overflow-auto bg-gray-100 p-2">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center">
             <button onClick={toggleSidebar} className="mr-4 md:hidden">
@@ -280,7 +280,7 @@ function DoctorsComponent() {
   </div>
 </div>
 
-<div className="grid gap-4 py-4">
+<div className="grid gap-4 py-4 overflow-x-auto">
   <Input 
     id="name" 
     value={adminInfo.name} 
@@ -311,6 +311,7 @@ function DoctorsComponent() {
   <Button variant="outline" className="bg-[#007664] text-white hover:bg-[#007664]/80 w-full sm:w-auto">Edit</Button>
   <Button className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto">Apply</Button>
 </div>
+
 
               </DialogContent>
             </Dialog>
