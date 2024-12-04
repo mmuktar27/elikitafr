@@ -206,7 +206,7 @@ function RemoteDoctorsComponent() {
           <NavItem icon={LogOut} label="Logout" onClick={handleLogout} />
         </nav>
       </aside>
-      <main className="flex-1 overflow-auto bg-gray-100 p-8">
+      <main className="flex-1 overflow-auto bg-gray-100 p-2">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center">
             <button onClick={toggleSidebar} className="mr-4 md:hidden">
@@ -260,51 +260,76 @@ function RemoteDoctorsComponent() {
       </DialogTitle>
     </DialogHeader>
     <div className="flex justify-center mb-4">
-  <div className="relative">
-    <Avatar className="h-24 w-24">
-      <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
-      <AvatarFallback>SM</AvatarFallback>
-    </Avatar>
-    <label 
-      htmlFor="avatar-upload" 
-      className="absolute bottom-1 right-1 bg-[#007664] rounded-full p-1 cursor-pointer shadow-md">
-      <Camera className="h-5 w-5 text-white" />
-    </label>
-    <input id="avatar-upload" type="file" className="hidden" />
-  </div>
-</div>
+        <div className="relative">
+          <Avatar className="h-24 w-24">
+            <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
+            <AvatarFallback>SM</AvatarFallback>
+          </Avatar>
+          <label
+            htmlFor="avatar-upload"
+            className="absolute bottom-1 right-1 bg-[#007664] rounded-full p-1 cursor-pointer shadow-md"
+          >
+            <Camera className="h-5 w-5 text-white" />
+          </label>
+          <input id="avatar-upload" type="file" className="hidden" />
+        </div>
+      </div>
 
-<div className="grid gap-4 py-4">
-  <Input 
-    id="name" 
-    value={adminInfo.name} 
-    placeholder="Name" 
-    onChange={(e) => setAdminInfo({...adminInfo, name: e.target.value})} 
-  />
-  <Input 
-    id="email" 
-    value={adminInfo.email} 
-    placeholder="Email" 
-    onChange={(e) => setAdminInfo({...adminInfo, email: e.target.value})} 
-  />
-  <Input 
-    id="phone" 
-    value={adminInfo.phone} 
-    placeholder="Phone" 
-    onChange={(e) => setAdminInfo({...adminInfo, phone: e.target.value})} 
-  />
-  <Input 
-    id="address" 
-    value={adminInfo.address} 
-    placeholder="Address" 
-    onChange={(e) => setAdminInfo({...adminInfo, address: e.target.value})} 
-  />
-</div>
+      <div className="grid gap-4 py-4 max-h-80 overflow-y-auto">
+        <Input
+          id="name"
+          value={adminInfo.name}
+          placeholder="Name"
+          onChange={(e) => setAdminInfo({ ...adminInfo, name: e.target.value })}
+          disabled={!isEditing} // Disable inputs when not in edit mode
+        />
+        <Input
+          id="email"
+          value={adminInfo.email}
+          placeholder="Email"
+          onChange={(e) => setAdminInfo({ ...adminInfo, email: e.target.value })}
+          disabled={!isEditing} // Disable inputs when not in edit mode
+        />
+        <Input
+          id="phone"
+          value={adminInfo.phone}
+          placeholder="Phone"
+          onChange={(e) => setAdminInfo({ ...adminInfo, phone: e.target.value })}
+          disabled={!isEditing} // Disable inputs when not in edit mode
+        />
+        <Input
+          id="address"
+          value={adminInfo.address}
+          placeholder="Address"
+          onChange={(e) => setAdminInfo({ ...adminInfo, address: e.target.value })}
+          disabled={!isEditing} // Disable inputs when not in edit mode
+        />
+    
 
-<div className="flex flex-col sm:flex-row justify-between gap-4">
-  <Button variant="outline" className="bg-[#007664] text-white hover:bg-[#007664]/80 w-full sm:w-auto">Edit</Button>
-  <Button className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto">Apply</Button>
-</div>
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <Button
+          variant="outline"
+          className="bg-[#007664] text-white hover:bg-[#007664]/80 w-full sm:w-auto"
+          onClick={() => setIsEditing(true)} // Show apply button when edit is clicked
+        >
+          Edit
+        </Button>
+
+        {isEditing && (
+          <Button
+            className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto"
+            onClick={() => {
+              // Handle applying changes, e.g., save data
+              setIsEditing(false); // Hide apply button after applying
+            }}
+          >
+            Apply
+          </Button>
+        )}
+      </div>
+      </div>
+
+
               </DialogContent>
             </Dialog>
         
