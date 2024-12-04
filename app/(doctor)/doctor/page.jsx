@@ -261,13 +261,12 @@ function DoctorsComponent() {
       <DialogContent 
         className="
           fixed 
-          bottom-0 
-          left-0 
-          right-0 
-          w-full 
-          max-w-full 
+          mo:bottom-0 
+        
+          mo:w-full 
+          mo:max-w-full 
           rounded-t-xl 
-          sm:rounded-lg 
+          mo:rounded-lg 
         
           mo:bottom-auto 
           mo:left-1/2 
