@@ -68,6 +68,14 @@ import Modal from 'react-modal';
 const Patients = ({setSelectedUser = () => {}}) => {
   const [isDetailsViewOpen , setIsDetailsViewOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("summary");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenWidth = () => setIsMobile(window.innerWidth < 400);
+    checkScreenWidth(); // Initial check
+    window.addEventListener('resize', checkScreenWidth); // Listen for resize
+    return () => window.removeEventListener('resize', checkScreenWidth); // Cleanup
+  }, []);
 
   const [patients, setPatients] = useState([
   {
@@ -563,7 +571,13 @@ return (
         </div>
 
         {/* Patients Table */}
-        <Card className="bg-[#75C05B]/10">
+        <Card className="bg-[#75C05B]/10"
+        style={{
+        width: isMobile ? '100vw' : 'auto', // Full width only on mobile
+        margin: '0',
+        padding: '0',
+      }}
+        >
           <CardHeader>
             <div className="flex justify-between items-center w-full">
               <div className="relative w-64">

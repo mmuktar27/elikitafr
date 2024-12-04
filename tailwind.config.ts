@@ -12,6 +12,9 @@ const config: Config = {
   theme: {
   	extend: {
 		
+		screens: {
+			mo: { max: '767px' }, // Define a custom breakpoint
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

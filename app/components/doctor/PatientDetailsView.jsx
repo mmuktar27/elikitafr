@@ -90,6 +90,14 @@ const PatientDetailsView = ({ patient, onClose , SelectedPatient }) => {
        const closeViewConsultModal = () => setIsViewConsultOpen(false);
        const closeViewMedModal = () => setIsViewMedOpen(false);
        const closeViewDiagnosisModal = () => setIsViewDiagOpen(false);
+       const [isMobile, setIsMobile] = useState(false);
+
+       useEffect(() => {
+         const checkScreenWidth = () => setIsMobile(window.innerWidth < 400);
+         checkScreenWidth(); // Initial check
+         window.addEventListener('resize', checkScreenWidth); // Listen for resize
+         return () => window.removeEventListener('resize', checkScreenWidth); // Cleanup
+       }, []);
 
        const viewlabDetails = (patient) => {
     setResult(patient.labResult);  
@@ -98,7 +106,7 @@ const PatientDetailsView = ({ patient, onClose , SelectedPatient }) => {
   
   const viewConsultDetails = (consult) => {
     setConsult(consult); 
-    console.log(consult) ;
+   // console.log(consult) ;
     setIsViewConsultOpen(true);
   };
   const viewMedtDetails = (medication) => {
@@ -1488,7 +1496,11 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
 {activeTab === "summary" && (
  <div className="flex justify-between items-center">
   
-   <Card className="w-full bg-[#75C05B]/10">
+   <Card className="w-full bg-[#75C05B]/10" style={{
+        width: isMobile ? '100vw' :'80vw',// Full width only on mobile
+        margin: '0',
+        padding: '0',
+      }} >
    
      <h2 className="text-2xl font-bold text-[#007664]"> </h2>
   <CardHeader className="flex flex-row items-center justify-between space-x-4">
@@ -1617,13 +1629,17 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
       <TabsTrigger value="medications" className="flex items-center gap-2 text-[#007664] hover:bg-[#007664]/20">
         <Pill className="h-4 w-4" />
         Medications
-      </TabsTrigger>
+      </TabsTrigger >
 </TabsList>
 
-    <TabsContent value="summary" className="mt-32 sm:mt-6">
+    <TabsContent value="summary" className="mt-32 sm:mt-6" style={{
+        width: isMobile ? '75vw' :'70vw',// Full width only on mobile
+        margin: '6',
+        padding: '0',
+      }}>
       <div className="space-y-6">
         {/* Top row with Demographics, Vitals, and Call Button */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative mo:mt-32" >
   <Card className="bg-[#75C05B]/10">
     <CardHeader className=" text-center">
       <CardTitle className="text-lg text-[#007664] text-center">Demographics</CardTitle>
@@ -1700,38 +1716,42 @@ const ConsultationForm = ({ buttonText, onSubmit, consultationData }) => {
     </TabsContent>
 
       <TabsContent value="consultations" className="mt-32 sm:mt-6">
-        <div className="flex justify-between mb-4">
-          <h3 className="text-lg font-semibold text-[#007664]">Recent Consultations</h3>
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-x-4">
-  <Dialog open={isAddOpen} onOpenChange={(isOpen) => handleDialogChange(isOpen, 'add')}>
-    <DialogTrigger asChild>
-      <Button className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto">
-        <Plus className="h-4 w-4" />
-        New Consultation
-      </Button>
-    </DialogTrigger>
+        <div className="flex flex-col sm:flex-row justify-between mb-4">
+  <h3 className="text-lg font-semibold text-[#007664] mb-4 sm:mb-0">
+    Recent Consultations
+  </h3>
+  <div className="flex flex-col gap-4 sm:flex-row sm:gap-x-4">
+    <Dialog open={isAddOpen} onOpenChange={(isOpen) => handleDialogChange(isOpen, 'add')}>
+      <DialogTrigger asChild>
+        <Button className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto">
+          <Plus className="h-4 w-4" />
+          New Consultation
+        </Button>
+      </DialogTrigger>
 
-    <DialogContent className="max-w-full sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-      <DialogHeader>
-        <DialogTitle>New Consultation</DialogTitle>
-      </DialogHeader>
+      <DialogContent className="max-w-full sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>New Consultation</DialogTitle>
+        </DialogHeader>
 
-      <ConsultationForm 
-        buttonText="Submit Consultation" 
-        onSubmit={() => handleFormSubmit('add')}
-        isLoading={isLoading}
-      />
-    </DialogContent>
-  </Dialog>
+        <ConsultationForm 
+          buttonText="Submit Consultation" 
+          onSubmit={() => handleFormSubmit('add')}
+          isLoading={isLoading}
+        />
+      </DialogContent>
+    </Dialog>
 
-  <Button 
-    className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto" 
-    onClick={startSmartConsult}
-  >
-    <Sparkles className="w-4 h-4" />
-    Start Smart Consultation
-  </Button>
-</div>
+    <Button 
+      className="bg-[#007664] hover:bg-[#007664]/80 w-full sm:w-auto" 
+      onClick={startSmartConsult}
+    >
+      <Sparkles className="w-4 h-4" />
+      Start Smart Consultation
+    </Button>
+  </div>
+
+
 
         </div>
         <div className="border rounded-lg  overflow-x-auto">
