@@ -86,16 +86,15 @@ import Modal from "react-modal";
 import { 
   Avatar, AvatarFallback, AvatarImage 
 } from "@/components/ui/avatar";
-import DashboardComponent from "@/app/components/doctor/Dashboard";
+import DashboardComponent from "@/app/components/remotedoctor/Dashboard";
 import {
-  AppointmentsPage,
+
   EventsPage,
-  ReferralsPage,
   PatientsPage,
   SettingsPage,
   SmartConsultationPage,
 
-} from "../../components/doctor";
+} from "../../components/shared";
 
 import { LogoutConfirmation } from "../../components/shared";
 import { useRouter } from "next/navigation";

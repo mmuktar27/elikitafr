@@ -62,7 +62,7 @@ import {
 import Modal from 'react-modal';
 import {
 PatientDetailsView
-} from "../../components/doctor";
+} from "../../components/shared";
 
 const  ReferralsPage = () => {
   const [referralData, setReferralData] = useState([

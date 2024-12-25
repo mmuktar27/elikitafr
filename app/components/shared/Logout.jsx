@@ -1,3 +1,6 @@
+import React from "react";
+import Cookies from "js-cookie";
+
 const LogoutConfirmation = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
 
@@ -14,7 +17,9 @@ const LogoutConfirmation = ({ isOpen, onClose, onConfirm }) => {
             Cancel
           </button>
           <button
-            onClick={onConfirm}
+            onClick={() => {
+              onConfirm();
+            }}
             className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
           >
             Logout

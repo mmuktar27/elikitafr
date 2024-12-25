@@ -235,8 +235,7 @@ const AppointmentsPage = () => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-[#007664]">Appointments</h2>
+      <div className="flex items-center justify-end">
         <button
           className="rounded bg-[#007664] px-4 py-2 font-bold text-white hover:bg-[#007664]/80"
           onClick={() => setIsNewAppointmentOpen(true)}

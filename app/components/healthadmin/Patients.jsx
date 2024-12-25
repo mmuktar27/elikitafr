@@ -1,7 +1,10 @@
 "use client";
-import { Check, Edit, Filter, Search, Trash2, UserPlus } from "lucide-react";
+import { Check, Edit, Filter, Search, Trash2, UserPlus,   Eye } from "lucide-react";
 import React, { useState } from "react";
-
+import { Dialog, DialogContent, DialogHeader, DialogTrigger, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
+import { 
+  Button 
+} from '@/components/ui/button';
 const Patients = () => {
   const [patients, setPatients] = useState([
     {
@@ -22,7 +25,7 @@ const Patients = () => {
       insuranceProvider: "HealthCare Plus",
     },
   ]);
-
+  const [openviewpatient, setOpenviewpatient] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -49,6 +52,42 @@ const Patients = () => {
   };
 
   const [newPatient, setNewPatient] = useState(emptyPatient);
+
+
+  const PatientDialog = ({ patientData }) => {
+  const patientDetails = [
+    { label: "Patient ID", value: patientData.identifier },
+    { label: "Full Name", value: patientData.name },
+    { label: "Birth Date", value: patientData.birthDate },
+    { label: "Gender", value: patientData.gender },
+    { label: "Address", value: patientData.address },
+    { label: "Phone", value: patientData.phone },
+    { label: "Email", value: patientData.email },
+    { label: "Medical Condition", value: patientData.condition },
+    { label: "Progress", value: patientData.progress },
+    { label: "Preferred Language", value: patientData.language },
+    { label: "Marital Status", value: patientData.maritalStatus },
+    { label: "Emergency Contact", value: patientData.emergencyContact },
+    { label: "Insurance Provider", value: patientData.insuranceProvider }
+  ];
+
+  return (
+    
+    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {patientDetails.map((detail, index) => (
+      <div key={index}>
+        <strong className="block text-sm font-medium text-gray-700 mb-1">
+          {detail.label}:
+        </strong>
+        <span className="text-gray-900">
+          {detail.value || "N/A"}
+        </span>
+      </div>
+    ))}
+  </div>
+  
+     
+  );}
 
   const resetDialogStates = () => {
     setIsAddOpen(false);
@@ -115,9 +154,14 @@ const Patients = () => {
       setIsLoading(false);
     }
   };
+  const viewDetails = (patient) => {
+    setSelectedPatient(patient);
+    setOpenviewpatient(true);
+   // console.log(selectedPatient)
+  };
 
   const PatientForm = ({ buttonText, onSubmit }) => (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="space-y-2">
         <label
           htmlFor="identifier"
@@ -127,7 +171,7 @@ const Patients = () => {
         </label>
         <input
           id="identifier"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Patient ID"
           value="PT097"
           disabled
@@ -142,7 +186,7 @@ const Patients = () => {
         </label>
         <input
           id="name"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Full Name"
           value={newPatient.name}
           onChange={(e) =>
@@ -160,7 +204,7 @@ const Patients = () => {
         <input
           id="birthDate"
           type="date"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           value={newPatient.birthDate}
           onChange={(e) =>
             setNewPatient({ ...newPatient, birthDate: e.target.value })
@@ -176,7 +220,7 @@ const Patients = () => {
         </label>
         <select
           id="gender"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           value={newPatient.gender}
           onChange={(e) =>
             setNewPatient({ ...newPatient, gender: e.target.value })
@@ -197,7 +241,7 @@ const Patients = () => {
         </label>
         <input
           id="address"
-          className="mt-1 block w-full rounded-md  border-gray-300 p-3 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Address"
           value={newPatient.address}
           onChange={(e) =>
@@ -214,7 +258,7 @@ const Patients = () => {
         </label>
         <input
           id="phone"
-          className="mt-1 block w-full rounded-md border-gray-300  p-3 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Phone"
           value={newPatient.phone}
           onChange={(e) =>
@@ -232,7 +276,7 @@ const Patients = () => {
         <input
           id="email"
           type="email"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Email"
           value={newPatient.email}
           onChange={(e) =>
@@ -249,7 +293,7 @@ const Patients = () => {
         </label>
         <input
           id="condition"
-          className="mt-1 block w-full rounded-md border-gray-300  p-3 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Medical Condition"
           value={newPatient.condition}
           onChange={(e) =>
@@ -266,7 +310,7 @@ const Patients = () => {
         </label>
         <select
           id="progress"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           value={newPatient.progress}
           onChange={(e) =>
             setNewPatient({ ...newPatient, progress: e.target.value })
@@ -287,7 +331,7 @@ const Patients = () => {
         </label>
         <input
           id="language"
-          className="mt-1 block w-full rounded-md  border-gray-300 p-3 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Preferred Language"
           value={newPatient.language}
           onChange={(e) =>
@@ -304,7 +348,7 @@ const Patients = () => {
         </label>
         <select
           id="maritalStatus"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           value={newPatient.maritalStatus}
           onChange={(e) =>
             setNewPatient({ ...newPatient, maritalStatus: e.target.value })
@@ -326,7 +370,7 @@ const Patients = () => {
         </label>
         <input
           id="emergencyContact"
-          className="mt-1  block w-full rounded-md border-gray-300 p-3 shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Emergency Contact"
           value={newPatient.emergencyContact}
           onChange={(e) =>
@@ -343,7 +387,7 @@ const Patients = () => {
         </label>
         <input
           id="insuranceProvider"
-          className="mt-1 block w-full rounded-md border-gray-300 p-3  shadow-sm focus:border-indigo-300/50  focus:ring focus:ring-indigo-200/50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300/50 focus:ring focus:ring-indigo-200/50"
           placeholder="Insurance Provider"
           value={newPatient.insuranceProvider}
           onChange={(e) =>
@@ -351,24 +395,20 @@ const Patients = () => {
           }
         />
       </div>
-      <div className="col-span-2 mt-4 flex justify-end space-x-2">
+      <div className="col-span-full mt-4 flex justify-end space-x-2">
         <button
           onClick={() =>
-            handleDialogChange(
-              false,
-              buttonText.includes("Add") ? "add" : "edit",
-            )
+            handleDialogChange(false, buttonText.includes("Add") ? "add" : "edit")
           }
-          className="rounded-md border border-transparent bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+          className="rounded-md border bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:ring focus:ring-gray-500 focus:ring-offset-2"
         >
           Cancel
         </button>
         <button
           onClick={onSubmit}
-          disabled={isLoading}
-          className="rounded-md border border-transparent bg-teal-700 px-4 py-2 text-sm font-medium text-white hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:ring focus:ring-indigo-500 focus:ring-offset-2"
         >
-          {isLoading ? "Submitting..." : buttonText}
+          {buttonText}
         </button>
       </div>
     </div>
@@ -413,8 +453,7 @@ const Patients = () => {
         isUpdate={Boolean(selectedPatient)}
       />
 
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-[#007664]">Patients</h2>
+      <div className="flex items-center justify-end">
         <button
           onClick={() => setIsAddOpen(true)}
           className="rounded-md bg-[#007664] px-4 py-2 text-white hover:bg-[#007664]/80 focus:outline-none focus:ring-2 focus:ring-[#007664] focus:ring-offset-2"
@@ -423,6 +462,7 @@ const Patients = () => {
           Add New Patient
         </button>
       </div>
+
 
       {isAddOpen && (
         <div className="fixed inset-0 z-50 size-full overflow-y-auto bg-gray-600/50">
@@ -569,10 +609,35 @@ const Patients = () => {
                     {patient.progress}
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-sm font-medium">
+             
+
+                          <Dialog>
+      <DialogTrigger asChild>
+      <Button 
+                            variant="ghost" 
+                            size="icon"
+                            className="text-blue-600 hover:text-blue-700"
+                           
+                          >
+                            <Eye className="h-4 w-4" />
+                          </Button>
+      </DialogTrigger>
+      
+      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-gray-800">
+            Patient Information
+          </DialogTitle>
+          <DialogDescription className="text-gray-600">
+            Comprehensive details of the selected patient
+          </DialogDescription>
+        </DialogHeader>
+        <PatientDialog patientData={patient} />
+        </DialogContent>
+    </Dialog>
                     <button
                       onClick={() => startEdit(patient)}
-                      className="mr-2 text-[#007664] hover:text-[#007664]/80"
-                    >
+                      className="mr-2 text-[#007664] hover:text-[#007664]/80">
                       <Edit className="size-4" />
                     </button>
                     <button
@@ -584,6 +649,9 @@ const Patients = () => {
                   </td>
                 </tr>
               ))}
+              <Dialog open={openviewpatient} onOpenChange={setOpenviewpatient}>
+        {selectedPatient && <PatientDialog patientData={selectedPatient} />}
+      </Dialog>
             </tbody>
           </table>
         </div>

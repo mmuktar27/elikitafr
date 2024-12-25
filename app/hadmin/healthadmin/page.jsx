@@ -86,20 +86,21 @@ import Modal from "react-modal";
 import { 
   Avatar, AvatarFallback, AvatarImage 
 } from "@/components/ui/avatar";
-import DashboardComponent from "@/app/components/doctor/Dashboard";
-import ReferralsPage from "@/app/components/doctor/Referrals";
+import DashboardComponent from "@/app/components/healthadmin/Dashboard";
+import {
+  AppointmentsPage,
+  EventsPage,
+  PatientsPage,
 
+
+} from "../../components/healthadmin";
 import {
  
-  EventsPage,
- 
-  PatientsPage,
   SettingsPage,
-  SmartConsultationPage,
+  LogoutConfirmation,
 
 } from "../../components/shared";
 
-import { LogoutConfirmation } from "../../components/shared";
 import { useRouter } from "next/navigation";
 
 
@@ -122,7 +123,7 @@ const NavItem = ({ icon: Icon, label, active, onClick }) => (
 
 
 
-function DoctorsComponent() {
+function HealthAdminComponent() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [adminInfo, setAdminInfo] = useState({
     name: "Smith",
@@ -171,46 +172,35 @@ function DoctorsComponent() {
           </button>
         </div>
         <nav className="space-y-2">
-        <NavItem
+          <NavItem
             icon={Home}
             label="Dashboard"
             active={activeTab === "dashboard"}
-            onClick={() => {
-              setActiveTab("dashboard");
-              toggleSidebar();
-            }}
+            onClick={() => setActiveTab("dashboard")}
           />
           <NavItem
             icon={Users}
             label="Patients"
             active={activeTab === "patient"}
-            onClick={() => {setActiveTab("patient");
-            toggleSidebar();}}
+            onClick={() => setActiveTab("patient")}
           />
           <NavItem
-            icon={UserPlus}
-            label="Referrals"
-            active={activeTab === "referrals"}
-            onClick={() => {setActiveTab("referrals");
-            toggleSidebar();}}
+            icon={ClockIcon}
+            label="Appointments"
+            active={activeTab === "appointments"}
+            onClick={() => setActiveTab("appointments")}
           />
-          <NavItem icon={Brain} 
-        label="Smart Consultation" active={activeTab === 'Smart Consultation'}
-         onClick={() => {setActiveTab('Smart Consultation');
-         toggleSidebar();}} />
           <NavItem
             icon={Activity}
             label="Events"
             active={activeTab === "events"}
-            onClick={() => {setActiveTab("events");
-            toggleSidebar();}}
+            onClick={() => setActiveTab("events")}
           />
           <NavItem
             icon={Settings}
             label="Settings"
             active={activeTab === "settings"}
-            onClick={() => {setActiveTab("settings");
-            toggleSidebar();}}
+            onClick={() => setActiveTab("settings")}
           />
           <NavItem icon={LogOut} label="Logout" onClick={handleLogout} />
         </nav>
@@ -229,7 +219,7 @@ function DoctorsComponent() {
                   <>
                     <span>{activeTab}</span> 
                     <span className="ml-2">&gt;</span> {/* Adds caret */}
-                    <span className="ml-2">Doctors Dashboard</span>
+                    <span className="ml-2">Healthcare Admin Dashboard</span>
                   </>
                 ) : (
                   activeTab
@@ -364,8 +354,7 @@ function DoctorsComponent() {
         {activeTab === "dashboard" && <DashboardComponent />}
         {activeTab === "patient" && <PatientsPage />}
         {activeTab === "events" && <EventsPage />}
-        {activeTab === "referrals" && <ReferralsPage />}
-        {activeTab === "Smart Consultation" && <SmartConsultationPage />}
+        {activeTab === "appointments" && <AppointmentsPage />}
         {activeTab === "settings" && <SettingsPage />}
 
         <LogoutConfirmation
@@ -379,4 +368,4 @@ function DoctorsComponent() {
   );
 }
 
-export default DoctorsComponent;
+export default HealthAdminComponent;
