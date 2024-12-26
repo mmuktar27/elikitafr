@@ -1565,7 +1565,7 @@ otherSymptoms: {
           <div className="bg-[#007664]/10 border border-[#007664]/20 rounded-lg p-4 flex items-start space-x-3">
             <AlertCircle className="h-5 w-5 text-[#007664] mt-0.5 flex-shrink-0" />
             <p className="text-sm text-[#007664]">
-              Please review the patient's medical history before proceeding with the new consultation to ensure comprehensive and personalized care.
+              Please review the patients medical history before proceeding with the new consultation to ensure comprehensive and personalized care.
             </p>
           </div>
     

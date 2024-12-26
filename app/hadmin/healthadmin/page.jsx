@@ -260,7 +260,7 @@ function HealthAdminComponent() {
           rounded-t-xl 
           mo:rounded-lg 
         
-          mo:bottom-auto 
+          
           mo:left-1/2 
           m0:top-1/2 
           
